@@ -4,29 +4,32 @@ module ClusterPoint
   module ModificationMethods
     def merge(params)
       params.each do | k, v|
-        if v.kind_of? ClusterPoint::Document
+        if self[k].kind_of? ClusterPoint::Document
           self[k].merge(v)
         elsif k.to_s.end_with? "_attributes"
           key=k.to_s[0..-12]
-          puts key
-          klass = Object.const_get(key[0..-2].capitalize)
+          #puts key
           h = ClusterPoint::HashMethods.remove_attribs(v.to_h)
-          puts "RRR:" + h.to_s
-          arr=[]
-          if h.keys.include?('_destroy')
-            puts 'TTT'
-            unless h['_destroy'] == "1"
-              arr << klass.from_hash(h, klass)
+          #puts "RRR:" + h.to_s
+          if h.keys.include?('_destroy') || h.keys.include?(:_destroy)
+            #puts 'TTT'
+            klass = Object.const_get(key.capitalize)
+            val = nil
+            unless h['_destroy'] == "1" || h[:_destroy] == "1"
+              val = klass.from_hash(h, klass)
             end
+            self[key] = val
           else
-            puts "AAA"
+            #puts "AAA"
+            arr=[]
+            klass = Object.const_get(key[0..-2].capitalize)
             h.values.each do |val|
-              unless val['_destroy'] == "1"
+              unless val['_destroy'] == "1" || val[:_destroy] == "1"
                 arr << klass.from_hash(val, klass)
               end
             end
+            self[key] = arr
           end
-          self[key] = arr
         else
           self[k] = v
         end

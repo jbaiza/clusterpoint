@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ClusterPoint do
+describe ClusterPoint::HashMethods do
   describe 'from_hash' do
     it 'creates object with Item class when empty hash given' do
       item = Item.from_hash({}, Item)
