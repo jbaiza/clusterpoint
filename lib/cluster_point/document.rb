@@ -15,14 +15,14 @@ module ClusterPoint
 
     attr_accessor :id, :type
 
-    def self.getCp
+    def self.get_cp
       if @cp == nil
         @cp = ClusterPoint::ClusterPointAdapter.new
       end
       @cp
     end
 
-    def getCp
+    def get_cp
       if @cp == nil
         @cp = ClusterPoint::ClusterPointAdapter.new
       end

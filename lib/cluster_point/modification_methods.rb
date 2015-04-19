@@ -40,22 +40,22 @@ module ClusterPoint
     def update(params)
       self.merge(params)
       puts "UPDATE_AFTER:"+self.to_s
-      getCp.update(self)
+      get_cp.update(self)
       self.class.get(self.id)
     end
     def save
       if self["id"] != nil
         id = self["id"]
-        getCp.update(self)
+        get_cp.update(self)
       else
         id = SecureRandom.uuid
         self["id"] = id
-        getCp.insert(self)
+        get_cp.insert(self)
       end
       self.class.get(id)
     end
     def destroy
-      getCp.delete(self["id"])
+      get_cp.delete(self["id"])
     end
   end
 end

@@ -3,7 +3,7 @@ module ClusterPoint
   module FinderMethods
       
     def all()
-      respToArray(JSON.parse(getCp.where({type: self.to_s.upcase})))
+      respToArray(JSON.parse(get_cp.where({type: self.to_s.upcase})))
     end
 
     def find(*ids)
@@ -20,12 +20,12 @@ module ClusterPoint
         result = get(ids.first)
         expects_array ? [ result ] : result
       else
-        getSome(ids)
+        get_some(ids)
       end
     end
 
     def get(id)
-      result = JSON.parse(getCp.where({id: id, type: self.to_s.upcase}))
+      result = JSON.parse(get_cp.where({id: id, type: self.to_s.upcase}))
       if result["found"].to_i > 0
         self.from_hash(result["documents"][id], self)
       else
@@ -35,8 +35,8 @@ module ClusterPoint
 
     protected
 
-    def getSome(ids)
-      items = respToArray(JSON.parse(getCp.where({type: self.to_s.upcase, id: "{" + ids.join(" ") + "}"}, ids.size, 0)))
+    def get_some(ids)
+      items = respToArray(JSON.parse(get_cp.where({type: self.to_s.upcase, id: "{" + ids.join(" ") + "}"}, ids.size, 0)))
       if items.size != ids.size
         raise RecordNotFound
       end
