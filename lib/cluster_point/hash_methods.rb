@@ -103,8 +103,7 @@ module ClusterPoint
     def self.remove_attribs(h)
       h.keys.each do |k_s|
         #puts "REMOVE_ATTRIBS:"+k_s.to_s + ":" + h[k_s].class.to_s
-        exists = Object.const_get(ActionController).is_a?(Class) rescue false
-        if exists && h[k_s].class == ActionController::Parameters
+        if h[k_s].class == ActionController::Parameters
           h[k_s] = h[k_s].to_h
         end
         if h[k_s].class == Hash

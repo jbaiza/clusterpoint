@@ -205,8 +205,9 @@ describe ClusterPoint::HashMethods do
       params = ActionController::Parameters.new({
         test_attributes: "Test"
       })
-      h = ClusterPoint::HashMethods.remove_attribs(params)
-      expect(h).to eq({"test" => "Test"})
+      h = {test: params}
+      h = ClusterPoint::HashMethods.remove_attribs(h)
+      expect(h).to eq({test: {"test" => "Test"}})
     end
 
     it 'calls reqursive when hash contains hash' do
