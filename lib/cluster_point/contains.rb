@@ -17,5 +17,8 @@ module ClusterPoint
     def get_contains
       @contains_one_class
     end
+    def clear_contains
+      @contains_one_class = nil
+    end
   end
 end

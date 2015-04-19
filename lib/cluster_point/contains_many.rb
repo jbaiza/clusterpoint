@@ -18,5 +18,8 @@ module ClusterPoint
     def get_contains_many
       @contains_many_class
     end
+    def clear_contains_many
+      @contains_many_class = nil
+    end
   end
 end
