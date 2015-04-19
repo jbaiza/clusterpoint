@@ -10,8 +10,8 @@ module ClusterPoint
         #puts "CONTAINS_MANY:" 
         #puts @contains_many_class
         #puts self.object_id
-        define_method(options.to_s.downcase+"s_attributes=") do |argument|
-          instance_variable_set( options.to_s.downcase+"s" , argument )
+        define_method(options.to_s+"_attributes=") do |argument|
+          instance_variable_set( "@" + options.to_s , argument )
         end
       end
     end

@@ -29,18 +29,18 @@ describe ClusterPoint do
       expect(Item.from_hash({test: "TEST"}, Item).persisted?).to eq(false)
     end
     it 'returns true when item contains id field' do
-      expect(Item.from_hash({test: "TEST", id: "1"}, Item).persisted?).to eq(false)
+      expect(Item.from_hash({test: "TEST", id: "1"}, Item).persisted?).to eq(true)
     end
   end
   describe 'document methods' do
     it 'has hash methods' do
-      (ClusterPoint::Document.methods).should include(:from_hash, :from_array, :like_array)
+      expect(ClusterPoint::Document.methods).to include(:from_hash, :from_array, :like_array)
     end
     it 'has json methods' do
-      (ClusterPoint::Document.instance_methods).should include(:as_json)
+      expect(ClusterPoint::Document.instance_methods).to include(:as_json)
     end
     it 'has finder methods' do
-      (ClusterPoint::Document.methods).should include(:all, :find, :get, :get_some)
+      expect(ClusterPoint::Document.methods).to include(:all, :find, :get, :get_some)
     end
   end
 end

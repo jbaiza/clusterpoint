@@ -8,6 +8,9 @@ module ClusterPoint
       if hash["id"]
         obj.id = hash["id"]
       end
+      if hash[:id]
+        obj.id = hash[:id]
+      end
       if klass.get_contains_many
         #puts klass.get_contains_many
         klass.get_contains_many.each do |cont|

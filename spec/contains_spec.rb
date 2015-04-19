@@ -35,6 +35,14 @@ describe ClusterPoint do
       end
       expect(ItemTest.get_contains).to match_array([:test, :test_h])
     end
+
+    it 'can call attributes method' do
+      Item.contains(:test)
+      expect(Item.get_contains).to eq([:test])
+      item = Item.from_hash({}, Item)
+      expect{item.test_attributes={}}.to_not raise_error
+    end
+
   end
 
   describe ClusterPoint::ContainsMany do
@@ -67,6 +75,14 @@ describe ClusterPoint do
       end
       expect(ItemTestMany.get_contains_many).to match_array([:test, :test_h])
     end
+
+    it 'can call attributes method' do
+      Item.contains_many(:tests)
+      expect(Item.get_contains_many).to eq([:tests])
+      item = Item.from_hash({}, Item)
+      expect{item.tests_attributes={}}.to_not raise_error
+    end
+
   end
 
   it 'returns both contains and contains many when both defined' do

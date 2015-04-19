@@ -9,8 +9,8 @@ module ClusterPoint
         @contains_one_class << options
         #puts "CONTAINS:" 
         #puts @contains_one_class
-        define_method(options.to_s.downcase+"_attributes=") do |argument|
-          instance_variable_set( options.to_s.downcase, argument )
+        define_method(options.to_s+"_attributes=") do |argument|
+          instance_variable_set( "@" + options.to_s, argument )
         end
       end
     end

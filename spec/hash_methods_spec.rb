@@ -12,6 +12,18 @@ describe ClusterPoint::HashMethods do
       expect(item.test).to eq("TEST")
     end
 
+    it 'creates object with Item class and id attribute' do
+      item = Item.from_hash({test: "TEST", id: 1}, Item)
+      expect(item.test).to eq("TEST")
+      expect(item.id).to eq 1
+    end
+
+    it 'creates object with Item class and id attribute' do
+      item = Item.from_hash({test: "TEST", "id" => 1}, Item)
+      expect(item.test).to eq("TEST")
+      expect(item.id).to eq 1
+    end
+
     describe 'with contains attribute' do
       before do
         class ContTest < ClusterPoint::Document

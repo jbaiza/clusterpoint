@@ -29,6 +29,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.2"
+  spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "rack-test"
   spec.add_dependency("activesupport", ["~> 4.0"])
   spec.add_dependency("activemodel", ["~> 4.0"])
   spec.add_dependency("httparty", ["~>0.13"])
