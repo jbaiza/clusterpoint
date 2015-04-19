@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'action_controller'
 
 describe ClusterPoint::HashMethods do
   describe 'from_hash' do
@@ -201,7 +202,6 @@ describe ClusterPoint::HashMethods do
     end
 
     it 'checks for ActionController::Parameters when it\'s defined' do
-      require 'action_controller'
       params = ActionController::Parameters.new({
         test_attributes: "Test"
       })

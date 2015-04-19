@@ -1,4 +1,5 @@
 require 'active_support'
+require 'action_controller'
 
 module ClusterPoint
   module HashMethods
