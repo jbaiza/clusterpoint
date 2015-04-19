@@ -1,3 +1,5 @@
+require 'active_support'
+
 module ClusterPoint
   module HashMethods
     def from_hash(hash, klass)
@@ -9,10 +11,10 @@ module ClusterPoint
       if klass.get_contains_many
         #puts klass.get_contains_many
         klass.get_contains_many.each do |cont|
-          key = cont.to_s.downcase+"s"
-          exists = Object.const_get(cont).is_a?(Class) rescue false
+          key = cont.to_s
+          exists = Object.const_get(cont.to_s.classify).is_a?(Class) rescue false
           if exists
-            cont_klass = Object.const_get(cont)
+            cont_klass = Object.const_get(cont.to_s.classify)
             arr = obj[key]
             unless arr == nil || arr == ""
               obj[key] = cont_klass.from_array(arr, cont_klass)
@@ -27,10 +29,10 @@ module ClusterPoint
       if klass.get_contains
         #puts klass.get_contains
         klass.get_contains.each do |cont|
-          key = cont.to_s.downcase
-          exists = Object.const_get(cont).is_a?(Class) rescue false
+          key = cont.to_s
+          exists = Object.const_get(cont.to_s.classify).is_a?(Class) rescue false
           if exists
-            cont_klass = Object.const_get(cont)
+            cont_klass = Object.const_get(cont.to_s.classify)
             hash = obj[key]
             unless hash == nil || hash == ""
               obj[key] = cont_klass.from_hash(hash, cont_klass)

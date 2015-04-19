@@ -26,7 +26,7 @@ describe ClusterPoint::ModificationMethods do
     describe 'document with contains' do
       before do
         class MainItem < ClusterPoint::Document
-          contains :Item
+          contains :item
         end
       end
       before(:each) do
@@ -37,15 +37,18 @@ describe ClusterPoint::ModificationMethods do
       it 'don\'t make changes in subdocument when only main changed' do
         @main_item.merge({test: "TEST1"})
         expect(@main_item.test).to eq("TEST1")
+        expect(@main_item.item.class).to eq(Item)
         expect(@main_item.item).to eq(@item)
       end
       it 'make changes in subdocument when such given' do
         @main_item.merge({test: "TEST1", item: {a: "AAA"}})
         expect(@main_item.test).to eq("TEST1")
+        expect(@main_item.item.class).to eq(Item)
         expect(@main_item.item.a).to eq("AAA")
       end
       it 'make changes in subdocument when _attributes given' do
         @main_item.merge({item_attributes: {a: "AAA", _destroy: "0"}})
+        expect(@main_item.item.class).to eq(Item)
         expect(@main_item.item.a).to eq("AAA")
       end
       it 'removes subdocument when _destroy given' do
@@ -56,7 +59,7 @@ describe ClusterPoint::ModificationMethods do
     describe 'document with contains_many' do
       before do
         class MainItem < ClusterPoint::Document
-          contains_many :Item
+          contains_many :items
         end
       end
       before(:each) do
@@ -67,16 +70,18 @@ describe ClusterPoint::ModificationMethods do
       it 'don\'t make changes in subdocuments when only main changed' do
         @main_item.merge({test: "TEST1"})
         expect(@main_item.test).to eq("TEST1")
+        expect(@main_item.items[0].class).to eq(Item)
         expect(@main_item.items).to eq(@items)
       end
       it 'make changes in subdocument when such given' do
         @main_item.merge({test: "TEST1", items_attributes: {"0" => {a: "AAA"}}})
         expect(@main_item.test).to eq("TEST1")
+        expect(@main_item.items[0].class).to eq(Item)
         expect(@main_item.items[0].a).to eq("AAA")
       end
       it 'removes subdocument when _destroy given' do
         @main_item.merge({items_attributes: {"0" => {a: "AAA", _destroy: "1"}}})
-        expect(@main_item.item).to be_nil
+        expect(@main_item.items).to eq([])
       end
     end
   end

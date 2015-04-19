@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'active_support'
 
 module ClusterPoint
   module ModificationMethods
@@ -13,7 +14,7 @@ module ClusterPoint
           #puts "RRR:" + h.to_s
           if h.keys.include?('_destroy') || h.keys.include?(:_destroy)
             #puts 'TTT'
-            klass = Object.const_get(key.capitalize)
+            klass = Object.const_get(key.classify)
             val = nil
             unless h['_destroy'] == "1" || h[:_destroy] == "1"
               val = klass.from_hash(h, klass)
@@ -22,7 +23,7 @@ module ClusterPoint
           else
             #puts "AAA"
             arr=[]
-            klass = Object.const_get(key[0..-2].capitalize)
+            klass = Object.const_get(key.classify)
             h.values.each do |val|
               unless val['_destroy'] == "1" || val[:_destroy] == "1"
                 arr << klass.from_hash(val, klass)

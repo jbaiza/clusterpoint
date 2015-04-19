@@ -17,36 +17,36 @@ describe ClusterPoint::HashMethods do
         class ContTest < ClusterPoint::Document
         end
         class ItemContain < ClusterPoint::Document
-          contains :ContTest
+          contains :cont_test
         end
       end
 
       it 'creates object with ItemContains class and nil contains element when empty hash given' do
         item = ItemContain.from_hash({}, ItemContain)
         expect(item.class).to eq(ItemContain)
-        expect(item.conttest).to be_nil
+        expect(item.cont_test).to be_nil
       end
 
       it 'creates object with ItemContains class and contains element when hash with it given' do
-        item = ItemContain.from_hash({test: "TEST", conttest: {a: "AA"}}, ItemContain)
+        item = ItemContain.from_hash({test: "TEST", cont_test: {a: "AA"}}, ItemContain)
         expect(item.class).to eq(ItemContain)
         expect(item.test).to eq("TEST")
-        expect(item.conttest.class).to eq(ContTest)
-        expect(item.conttest.a).to eq("AA")
+        expect(item.cont_test.class).to eq(ContTest)
+        expect(item.cont_test.a).to eq("AA")
       end
 
       it 'creates object with correct class and elements when contains many classes' do
         class ContainsItems < ClusterPoint::Document
-          contains :ContTest
-          contains :ItemContain
+          contains :cont_test
+          contains :item_contain
         end
-        item = ContainsItems.from_hash({test: "TEST", conttest: {a: "AA"}, itemcontain: {b: "BB"}}, ContainsItems)
+        item = ContainsItems.from_hash({test: "TEST", cont_test: {a: "AA"}, item_contain: {b: "BB"}}, ContainsItems)
         expect(item.class).to eq(ContainsItems)
         expect(item.test).to eq("TEST")
-        expect(item.conttest.class).to eq(ContTest)
-        expect(item.conttest.a).to eq("AA")
-        expect(item.itemcontain.class).to eq(ItemContain)
-        expect(item.itemcontain.b).to eq("BB")
+        expect(item.cont_test.class).to eq(ContTest)
+        expect(item.cont_test.a).to eq("AA")
+        expect(item.item_contain.class).to eq(ItemContain)
+        expect(item.item_contain.b).to eq("BB")
       end
     end
 
@@ -55,7 +55,7 @@ describe ClusterPoint::HashMethods do
         class ContTest < ClusterPoint::Document
         end
         class ItemContain < ClusterPoint::Document
-          contains_many :ContTest
+          contains_many :cont_tests
         end
       end
 
@@ -66,28 +66,28 @@ describe ClusterPoint::HashMethods do
       end
 
       it 'creates object with ItemContains class and array with contains element when hash with it given' do
-        item = ItemContain.from_hash({test: "TEST", conttests: {a: "AA"}}, ItemContain)
+        item = ItemContain.from_hash({test: "TEST", cont_tests: {a: "AA"}}, ItemContain)
         expect(item.class).to eq(ItemContain)
         expect(item.test).to eq("TEST")
-        expect(item.conttests.class).to eq(Array)
-        expect(item.conttests[0].class).to eq(ContTest)
-        expect(item.conttests[0].a).to eq("AA")
+        expect(item.cont_tests.class).to eq(Array)
+        expect(item.cont_tests[0].class).to eq(ContTest)
+        expect(item.cont_tests[0].a).to eq("AA")
       end
 
       it 'creates object with correct class and element arrays when contains many classes' do
         class ContainsItems < ClusterPoint::Document
-          contains_many :ContTest
-          contains_many :ItemContain
+          contains_many :cont_tests
+          contains_many :item_contains
         end
-        item = ContainsItems.from_hash({test: "TEST", conttests: {a: "AA"}, itemcontains: {b: "BB"}}, ContainsItems)
+        item = ContainsItems.from_hash({test: "TEST", cont_tests: {a: "AA"}, item_contains: {b: "BB"}}, ContainsItems)
         expect(item.class).to eq(ContainsItems)
         expect(item.test).to eq("TEST")
-        expect(item.conttests.class).to eq(Array)
-        expect(item.conttests[0].class).to eq(ContTest)
-        expect(item.conttests[0].a).to eq("AA")
-        expect(item.itemcontains.class).to eq(Array)
-        expect(item.itemcontains[0].class).to eq(ItemContain)
-        expect(item.itemcontains[0].b).to eq("BB")
+        expect(item.cont_tests.class).to eq(Array)
+        expect(item.cont_tests[0].class).to eq(ContTest)
+        expect(item.cont_tests[0].a).to eq("AA")
+        expect(item.item_contains.class).to eq(Array)
+        expect(item.item_contains[0].class).to eq(ItemContain)
+        expect(item.item_contains[0].b).to eq("BB")
       end
     end
   end
