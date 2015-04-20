@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["jbaiza@gmail.com"]
   spec.license       = 'GPL'
 
-  spec.summary       = 'Clusterpoint NoSQL database framework'
-  spec.description   = 'Framework for Clusterpoint NoSQL DB, written in Ruby'
+  spec.summary       = 'Clusterpoint (https://cloud.clusterpoint.com/) NoSQL database framework'
+  spec.description   = 'Framework for Clusterpoint NoSQL DB (https://cloud.clusterpoint.com/), written in Ruby'
   spec.homepage      = 'https://github.com/jbaiza/clusterpoint'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

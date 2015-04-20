@@ -1,6 +1,6 @@
 # Clusterpoint
 
-Clusterpoint NoSQL database framework.
+Clusterpoint NoSQL database framework [cloud.clusterpoint.com](https://cloud.clusterpoint.com/).
 
 ## Installation
 
