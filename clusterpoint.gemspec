@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = ClusterPoint::VERSION
   spec.authors       = ["Janis Baiza"]
   spec.email         = ["jbaiza@gmail.com"]
+  spec.license       = 'GPL'
 
   spec.summary       = 'Clusterpoint NoSQL database framework'
   spec.description   = 'Framework for Clusterpoint NoSQL DB, written in Ruby'
