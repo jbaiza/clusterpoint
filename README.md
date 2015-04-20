@@ -27,26 +27,26 @@ Add railtie require to your application.rb file:
 
 ### Database connection
 Add cluster_point.yml file under config directory. Following format;
-development:
-  url: https://api.clusterpoint.com
-  account_id: [Clusterpoint cloud api account ID]
-  database: [Database to use]
-  username: [Clusterpoint cloud username]
-  password: [Clusterpoint cloud password]
+    development:
+      url: https://api.clusterpoint.com
+      account_id: [Clusterpoint cloud api account ID]
+      database: [Database to use]
+      username: [Clusterpoint cloud username]
+      password: [Clusterpoint cloud password]
 
 ### Framework usage
 To make model as Clusterpoint document innerhit it from ClusterPoint::Document
 
 To define subdocuments you can use one of two options - contains (if contains single subdocument) or contains_many (if contains more than one subdocument):
-  contains_many :translations
-  contains :author
+    contains_many :translations
+    contains :author
 
 Example:
-class Item < ClusterPoint::Document
-  contains_many :translations
-  contains_many :locations
-  contains :author
-end
+    class Item < ClusterPoint::Document
+      contains_many :translations
+      contains_many :locations
+      contains :author
+    end
 
 ## Development
 
