@@ -52,13 +52,13 @@ Example:
     end
 
 ### Basic operations
-Item.all - retrieve all documents with type Item (models are divided with document attribute `type`)
-Item.find(id) - retrieve document with ID = id
-Item.new_from_hash(item_params.to_h) - create new document from hash
-@item.save - save document
-@item.update(item_params.to_h) - update document and save changes
-@item.destroy - delete document
-.where({type: "ITEM"}) - custom query - not yet exposed for easy use
+* Item.all - retrieve all documents with type Item (models are divided with document attribute `type`)
+* Item.find(id) - retrieve document with ID = id
+* Item.new_from_hash(item_params.to_h) - create new document from hash
+* @item.save - save document
+* @item.update(item_params.to_h) - update document and save changes
+* @item.destroy - delete document
+* .where({type: "ITEM"}) - custom query - not yet exposed for easy use
 
 
 ## Development
