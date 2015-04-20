@@ -36,7 +36,7 @@ Add cluster_point.yml file under config directory. Following format;
       password: [Clusterpoint cloud password]
 
 ### Framework usage
-To make model as Clusterpoint document innerhit it from ClusterPoint::Document
+To make model as Clusterpoint document innerhit it from `ClusterPoint::Document`
 
 To define subdocuments you can use one of two options - contains (if contains single subdocument) or contains_many (if contains more than one subdocument):
 
