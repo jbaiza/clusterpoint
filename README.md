@@ -38,7 +38,7 @@ Add cluster_point.yml file under config directory. Following format;
 ### Framework usage
 To make model as Clusterpoint document innerhit it from `ClusterPoint::Document`
 
-To define subdocuments you can use one of two options - contains (if contains single subdocument) or contains_many (if contains more than one subdocument):
+To define subdocuments you can use one of two options - `contains` (if contains single subdocument) or `contains_many` (if contains more than one subdocument):
 
     contains_many :translations
     contains :author
