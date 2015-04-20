@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Clusterpoint NoSQL database framework'
   spec.description   = 'Framework for Clusterpoint NoSQL DB, written in Ruby'
-  #spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = 'https://github.com/jbaiza/clusterpoint'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
