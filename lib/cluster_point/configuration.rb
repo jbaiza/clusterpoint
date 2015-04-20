@@ -3,7 +3,7 @@ require 'rails'
 module ClusterPoint
   module Configuration
     def load_config
-      @file = Rails.root ? Rails.root.to_s : "." + "/config/cluster_point.yml"
+      @file = (Rails.root ? Rails.root.to_s : ".") + "/config/cluster_point.yml"
       @env = DEFAULT_ENV.call.to_s
       if !File.exists?(@file)
         raise ConfigurationNotFound
