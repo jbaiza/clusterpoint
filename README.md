@@ -28,42 +28,48 @@ Add railtie require to your application.rb file:
 ### Database connection
 Add cluster_point.yml file under config directory. Following format;
 
-    development:
-      url: https://api.clusterpoint.com
-      account_id: [Clusterpoint cloud api account ID]
-      database: [Database to use]
-      username: [Clusterpoint cloud username]
-      password: [Clusterpoint cloud password]
-      [debug_output: $stdout]
+```
+development:
+    url: https://api.clusterpoint.com
+    account_id: [Clusterpoint cloud api account ID]
+    database: [Database to use]
+    username: [Clusterpoint cloud username]
+    password: [Clusterpoint cloud password]
+    [debug_output: $stdout]
+```
 
 ### Framework usage
 To make model as Clusterpoint document innerhit it from `ClusterPoint::Document`
 
 To define subdocuments you can use one of two options - `contains` (if contains single subdocument) or `contains_many` (if contains more than one subdocument):
 
-    contains_many :translations
-    contains :author
+```ruby
+contains_many :translations
+contains :author
+```
 
 Example:
 
-    class Item < ClusterPoint::Document
-      contains_many :translations
-      contains_many :locations
-      contains :author
-    end
+```ruby
+class Item < ClusterPoint::Document
+  contains_many :translations
+  contains_many :locations
+  contains :author
+end
+```
 
 ### Basic operations
-* Item.all - retrieve all documents with type Item (models are divided with document attribute `type`)
-* Item.find(id) - retrieve document with ID = id
-* Item.new_from_hash(item_params.to_h) - create new document from hash
-* @item.save - save document
-* @item.update(item_params.to_h) - update document and save changes
-* @item.destroy - delete document
-* Item.where(query_hash, order_hash, record_count, start_offset) - custom query.
-** Item.where({code: "A*"}, {string: {code: :ascending}})
-More about query syntax:
-- http://docs.clusterpoint.com/wiki/Search_query_syntax
-- http://docs.clusterpoint.com/wiki/Alphabetic_Ordering
+* `Item.all` - retrieve all documents with type Item (models are divided with document attribute `type`)
+* `Item.find(id)` - retrieve document with ID = id
+* `Item.new_from_hash(item_params.to_h)` - create new document from hash
+* `@item.save` - save document
+* `@item.update(item_params.to_h)` - update document and save changes
+* `@item.destroy `- delete document
+* `Item.where(query_hash, order_hash, record_count, start_offset)` - custom query.
+  * `Item.where({code: "A*"}, {string: {code: :ascending}})`
+  - More about query syntax:
+    - http://docs.clusterpoint.com/wiki/Search_query_syntax
+    - http://docs.clusterpoint.com/wiki/Alphabetic_Ordering
 
 ## Development
 
