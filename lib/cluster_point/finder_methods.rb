@@ -2,8 +2,13 @@ require 'json'
 module ClusterPoint
   module FinderMethods
       
-    def all()
-      respToArray(JSON.parse(get_cp.where({type: self.to_s.upcase})))
+    def all(ordering={string: {id: :ascending}})
+      respToArray(JSON.parse(get_cp.where({type: self.to_s.upcase}, ordering)))
+    end
+
+    def where(conditions={}, ordering={string: {id: :ascending}}, docs=20, offset=0)
+      conditions.merge!({type: self.to_s.upcase})
+      respToArray(JSON.parse(get_cp.where(conditions, ordering, docs, offset)))
     end
 
     def find(*ids)
@@ -36,7 +41,7 @@ module ClusterPoint
     protected
 
     def get_some(ids)
-      items = respToArray(JSON.parse(get_cp.where({type: self.to_s.upcase, id: "{" + ids.join(" ") + "}"}, ids.size, 0)))
+      items = respToArray(JSON.parse(get_cp.where({type: self.to_s.upcase, id: "{" + ids.join(" ") + "}"}, docs: ids.size)))
       if items.size != ids.size
         raise RecordNotFound
       end

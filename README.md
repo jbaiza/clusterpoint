@@ -34,6 +34,7 @@ Add cluster_point.yml file under config directory. Following format;
       database: [Database to use]
       username: [Clusterpoint cloud username]
       password: [Clusterpoint cloud password]
+      [debug_output: $stdout]
 
 ### Framework usage
 To make model as Clusterpoint document innerhit it from `ClusterPoint::Document`
@@ -58,8 +59,11 @@ Example:
 * @item.save - save document
 * @item.update(item_params.to_h) - update document and save changes
 * @item.destroy - delete document
-* .where({type: "ITEM"}) - custom query - not yet exposed for easy use
-
+* Item.where(query_hash, order_hash, record_count, start_offset) - custom query.
+** Item.where({code: "A*"}, {string: {code: :ascending}})
+More about query syntax:
+- http://docs.clusterpoint.com/wiki/Search_query_syntax
+- http://docs.clusterpoint.com/wiki/Alphabetic_Ordering
 
 ## Development
 

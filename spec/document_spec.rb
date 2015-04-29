@@ -40,7 +40,7 @@ describe ClusterPoint do
       expect(ClusterPoint::Document.instance_methods).to include(:as_json)
     end
     it 'has finder methods' do
-      expect(ClusterPoint::Document.methods).to include(:all, :find, :get, :get_some)
+      expect(ClusterPoint::Document.methods).to include(:all, :where, :find, :get, :get_some)
     end
   end
 end

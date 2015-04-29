@@ -19,6 +19,9 @@ module ClusterPoint
       @config = data[@env]
 
       self.class.base_uri get_base_uri(@config)
+      if @config["debug_output"]
+        self.class.debug_output $stdout
+      end
     end
 
     def get_base_uri(config)

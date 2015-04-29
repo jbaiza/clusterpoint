@@ -5,7 +5,6 @@ module ClusterPoint
 
   class ClusterPointAdapter
     include HTTParty
-    debug_output $stdout
     include ClusterPoint::Configuration
 
     def initialize
@@ -62,10 +61,12 @@ module ClusterPoint
       end
     end
 
-    def where(hash={}, docs=20, offset=0)
-      xml = hash.to_xml(skip_instruct: true, :indent => 1)
-      options = { body: [{ query: xml.lines.to_a[1..-2].join, 
-                           docs: docs, 
+    def where(conditions={}, ordering={string: {id: :ascending}}, docs=20, offset=0)
+      query_xml = conditions.to_xml(skip_instruct: true, skip_types: true, indent: 1)
+      ordering_xml = ordering.to_xml(skip_instruct: true, skip_types: true, indent: 1)
+      options = { body: [{ query: query_xml.lines.to_a[1..-2].join,
+                           ordering: ordering_xml.lines.to_a[1..-2].join,
+                           docs: docs,
                            offset: offset
                         }].to_json,
                   basic_auth: @auth,
