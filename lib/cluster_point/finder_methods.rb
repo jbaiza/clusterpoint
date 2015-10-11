@@ -32,7 +32,7 @@ module ClusterPoint
     def get(id)
       result = JSON.parse(get_cp.where({id: id, type: self.to_s.upcase}))
       if result["found"].to_i > 0
-        self.from_hash(result["documents"][id], self)
+        self.from_hash(result["documents"][0], self)
       else
         raise RecordNotFound
       end
@@ -51,7 +51,7 @@ module ClusterPoint
     protected
     def respToArray(json)
       items = []
-      json["documents"].each do | key, value |
+      json["documents"].each do | value |
         ite = self.from_hash(value, self)
         items << ite
       end
